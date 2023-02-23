@@ -1,3 +1,5 @@
+This project was made for repetition purposes in addition to the course. Angular 12 & Typescript & Bootstrap & Html - Css are used. Image may contain copyright.
+
 # BookStoreApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
