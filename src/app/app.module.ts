@@ -8,6 +8,8 @@ import { BooksComponent } from './books/books.component';
 import { BookComponent } from './books/book/book.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { CategoryComponent } from './category/category.component';
+import { FormsModule } from '@angular/forms';
+import { BookFilterPipe } from './pipes/book-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,10 +19,12 @@ import { CategoryComponent } from './category/category.component';
     BooksComponent,
     BookComponent,
     BookDetailComponent,
-    CategoryComponent
+    CategoryComponent,
+    BookFilterPipe,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

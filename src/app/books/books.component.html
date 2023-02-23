@@ -1,16 +1,17 @@
 <div *ngIf="books.length>0; else no_books">
     
-    <ng-template [ngTemplateOutlet]="book_list_popular" [ngTemplateOutletContext]="{popuBooks: bookRepository.getPopularBooks()}">
-
-    </ng-template>
+    <div class="mb-3">
+        <input type="text" [(ngModel)]="filterText" class="form-control" placeholder="Search...">
+        <small class="text-muted" *ngIf="filterText.length>0">Aradağınız Kelime: {{filterText}}</small>
+    </div>
 
     <ng-template [ngTemplateOutlet]="book_list_general">
 
     </ng-template>
 
-    <div class="alert alert-success">
-        {{books.length}} books listed.
-    </div>
+    <ng-template [ngTemplateOutlet]="book_list_popular" [ngTemplateOutletContext]="{popuBooks: bookRepository.getPopularBooks()}">
+
+    </ng-template>
 </div>
 
 
@@ -18,21 +19,25 @@
 
     <h2>{{title}}</h2>
 
-    <div class="card mb-3" *ngFor="let item of books">
+    <div class="card mb-3" *ngFor="let item of books | bookFilter: filterText">
         <div class="row">
             <div class="col-md-3">
                 <img src="assets/img/{{item.imgUrl}}" class="img-fluid rounded-start" alt="">
             </div>
             <div class="col-md-9">
                 <div class="card-body">
-                    <h2 class="card-title"> {{item.title}} </h2>
+                    <h2 class="card-title"> {{item.title | titlecase}} </h2>
                     <h6>{{item.author}}</h6>
-                    <p class="card-text">{{item.description}}</p>
+                    <p class="card-text">{{item.description | titlecase}}</p>
                     <button class="btn btn-sm btn-outline-danger">Details</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- <div class="alert alert-success">
+        {{books.length}} books listed.
+    </div> -->
 </ng-template>
 
 <ng-template #book_list_popular let-popularBooks="popuBooks">
@@ -45,10 +50,10 @@
                 <img src="assets/img/{{item.imgUrl}}" alt="" class="card-img-top img-fluid" style="height: 45vh; ">
                 <div class="card-body">
                     <h5 class="card-title">
-                        {{item.title}}
+                        {{item.title | titlecase}}
                     </h5>
                     <p class="card-text">
-                        {{item.description}}
+                        {{item.description | titlecase}}
                     </p>
                 </div>
             </div>

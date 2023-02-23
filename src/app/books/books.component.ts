@@ -12,6 +12,8 @@ export class BooksComponent {
   books:Book[];
   bookRepository: BookRepository;
 
+  filterText = "";
+
   constructor(){
     this.bookRepository = new BookRepository();
     this.books = this.bookRepository.getBooks();
