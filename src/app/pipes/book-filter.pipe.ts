@@ -8,8 +8,6 @@ export class BookFilterPipe implements PipeTransform {
 
   transform(books: Book[], filterText: string): Book[] {
     filterText = filterText.toLowerCase();
-    console.log(filterText);
-    console.log(books)
     
     return filterText? books.filter((b:Book) => (
       (b.title.toLowerCase().indexOf(filterText) !== -1) ||
