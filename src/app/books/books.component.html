@@ -19,6 +19,8 @@
 
     <h2>{{title}}</h2>
 
+
+    
     <div class="card mb-3" *ngFor="let item of books | bookFilter: filterText">
         <div class="row">
             <div class="col-md-3">
@@ -29,7 +31,22 @@
                     <h2 class="card-title"> {{item.title | titlecase}} </h2>
                     <h6>{{item.author}}</h6>
                     <p class="card-text">{{item.description | titlecase}}</p>
-                    <button class="btn btn-sm btn-outline-danger">Details</button>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <button class="btn btn-sm btn-outline-danger">Details</button>
+                        </div>
+                        <div class="col">
+                           
+                        </div>
+                        <div class="col">
+                            <button id="element" (click)="addToList($event, item)" class="btn ms-3">
+                                <i class="fa fa-heart"
+                                    style="color: red;cursor: pointer; font-size: 18px;">
+                                     Add
+                                </i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
