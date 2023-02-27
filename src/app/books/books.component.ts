@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Book } from '../models/book';
 import { BookRepository } from '../models/book.repository';
-
-declare let alertify : any;
+import { AlertifyService } from '../services/alertify.services';
 
 @Component({
   selector: 'app-books',
@@ -16,7 +15,7 @@ export class BooksComponent {
 
   filterText = "";
 
-  constructor(){
+  constructor(private alertify: AlertifyService){
     this.bookRepository = new BookRepository();
     this.books = this.bookRepository.getBooks();
   }
@@ -27,12 +26,12 @@ export class BooksComponent {
       $event.target.classList.remove('fa-heart');
       $event.target.classList.add('fa-trash');
       $event.target.innerText = " Remove";
-      alertify.success(book.title + " added to your list.");
+      this.alertify.success(book.title + " added to your list.");
     }else {
       $event.target.classList.add('fa-heart');
       $event.target.classList.remove('fa-trash');
       $event.target.innerText = " Add";
-      alertify.error(book.title + " removed from your list");
+      this.alertify.error(book.title + " removed from your list.");
     }
   }
 }
