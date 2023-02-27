@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Book } from '../models/book';
 import { BookRepository } from '../models/book.repository';
 
+declare let alertify : any;
+
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html',
@@ -24,11 +26,13 @@ export class BooksComponent {
     if($event.target.classList.contains('fa-heart')){
       $event.target.classList.remove('fa-heart');
       $event.target.classList.add('fa-trash');
-      $event.target.innerText = " Remove"
+      $event.target.innerText = " Remove";
+      alertify.success(book.title + " added to your list.");
     }else {
       $event.target.classList.add('fa-heart');
       $event.target.classList.remove('fa-trash');
-      $event.target.innerText = " Add"
+      $event.target.innerText = " Add";
+      alertify.error(book.title + " removed from your list");
     }
   }
 }
