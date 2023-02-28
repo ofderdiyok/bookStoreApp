@@ -10,7 +10,8 @@ import { BookDetailComponent } from './book-detail/book-detail.component';
 import { CategoryComponent } from './category/category.component';
 import { FormsModule } from '@angular/forms';
 import { BookFilterPipe } from './pipes/book-filter.pipe';
-import { AlertifyService } from './services/alertify.services';
+import { AlertifyService } from './services/alertify.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AlertifyService } from './services/alertify.services';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     AlertifyService,
