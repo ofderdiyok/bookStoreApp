@@ -33,7 +33,7 @@
                     <p class="card-text">{{item.description | titlecase}}</p>
                     <div class="row align-items-center">
                         <div class="col">
-                            <button class="btn btn-sm btn-outline-danger">Details</button>
+                            <a routerLink="/books/{{item.id}}" class="btn btn-sm btn-outline-danger">Details</a>
                         </div>
                         <div class="col">
                            
@@ -80,6 +80,10 @@
 
 <ng-template #no_books>
     <div class="alert alert-warning">
-        No books found.
+        No books found. But you can review "Best Seller".
     </div>
+
+    <ng-template [ngTemplateOutlet]="book_list_popular" [ngTemplateOutletContext]="{popuBooks: popularBooks}">
+
+    </ng-template>
 </ng-template>

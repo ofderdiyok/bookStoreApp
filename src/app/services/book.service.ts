@@ -9,11 +9,22 @@ export class BookService{
 
     constructor(private http: HttpClient){}
 
-    getBooks(): Observable<Book[]>{
-        return this.http.get<Book[]>(this.url);
+    getBooks(categoryId: number): Observable<Book[]>{
+        let newUrl = this.url;
+
+        if(categoryId){
+            newUrl += '?categoryId=' + categoryId;
+        }
+        return this.http.get<Book[]>(newUrl);
+    }
+
+    getBookById(bookId: number): Observable<Book>{
+        let newUrl = this.url + '/' + bookId;
+        return this.http.get<Book>(newUrl);
     }
 
     getPopularBooks(): Observable<Book[]>{
+
         return this.http.get<Book[]>(this.url).pipe(
             map(results => results.filter(r => r.isPopular==true))
         )
