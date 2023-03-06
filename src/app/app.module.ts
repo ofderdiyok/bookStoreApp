@@ -13,6 +13,7 @@ import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { CreateBookComponent } from './create-book/create-book.component';
+import { CardSummaryPipe } from './pipes/card-summary.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CreateBookComponent } from './create-book/create-book.component';
     CategoryComponent,
     BookFilterPipe,
     CreateBookComponent,
+    CardSummaryPipe,
   ],
   imports: [
     BrowserModule,
