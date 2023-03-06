@@ -12,7 +12,7 @@ import { BookFilterPipe } from './pipes/book-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { MovieDetailComponent } from './movie-detail/movie-detail.component';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { MovieDetailComponent } from './movie-detail/movie-detail.component';
     BookDetailComponent,
     CategoryComponent,
     BookFilterPipe,
-    MovieDetailComponent,
+    CreateBookComponent,
   ],
   imports: [
     BrowserModule,

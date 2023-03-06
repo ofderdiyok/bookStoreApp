@@ -5,4 +5,5 @@ export interface Book{
     imgUrl: string;
     description: string;
     isPopular: boolean;
+    categoryId: number;
 }
