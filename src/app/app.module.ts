@@ -7,7 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BooksComponent } from './books/books.component';
 import { BookDetailComponent } from './book-detail/book-detail.component';
 import { CategoryComponent } from './category/category.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BookFilterPipe } from './pipes/book-filter.pipe';
 import { AlertifyService } from './services/alertify.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,7 +31,8 @@ import { CardSummaryPipe } from './pipes/card-summary.pipe';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     AlertifyService,

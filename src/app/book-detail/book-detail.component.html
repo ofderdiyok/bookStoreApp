@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center" *ngIf="book">
     <div class="row">
         <div class="col">
             <h1>{{ book.title }}</h1>
@@ -7,7 +7,7 @@
             </p>
         </div>
         <div class="col">
-            <img class="img-fluid rounded-start" src="assets/img/{{book.imgUrl}}" alt="">
+            <img class="img-fluid rounded-start" src="assets/img/{{book.imageUrl}}" alt="">
         </div>
     </div>
     

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Book } from '../models/book';
 import { Category } from '../models/category';
@@ -18,6 +19,17 @@ export class CreateBookComponent {
               private router: Router){}
 
   categories : Category[] = [];
+  model : any = {
+    categoryId : ""
+  };
+
+  bookForm = new FormGroup({
+    title : new FormControl("", [Validators.required, Validators.minLength(4)]),
+    author : new FormControl("", [Validators.required, Validators.minLength(8)]),
+    description : new FormControl("", [Validators.required, Validators.minLength(20)]),
+    imageUrl : new FormControl("", [Validators.required]),
+    categoryId : new FormControl("", [Validators.required]),
+  })
 
   ngOnInit(): void{
     this.categoryService.getCategories().subscribe(data => {
@@ -25,23 +37,30 @@ export class CreateBookComponent {
     })
   }
 
-  createBook(title: any, author: any, description: any, imageUrl: any, categoryid: any){
-     const tempBook :Book = {
+  createBook(){
+
+    console.log(this.model);
+
+    const tempBook :Book = {
        id : 0,
-       title: title.value,
-       author: author.value,
-       imgUrl: imageUrl.value,
-       description: description.value,
+       title: this.model.title,
+       author: this.model.author,
+       imageUrl: this.model.imageUrl,
+       description: this.model.description,
        isPopular: false,
-       categoryId : categoryid.value
+       categoryId : this.model.categoryId
      }
 
     this.bookService.createBook(tempBook).subscribe(data => 
         this.router.navigate(['books', data.id])
       );
 
-    this.alertify.success(title.value + " added.")
+    this.alertify.success(this.model.title + " added.")
 
     
+  }
+
+  log(value: any){
+    console.log(value);
   }
 }

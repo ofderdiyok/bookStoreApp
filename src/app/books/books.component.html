@@ -22,7 +22,7 @@
     <div class="card mb-3" *ngFor="let item of books | bookFilter: filterText">
         <div class="row">
             <div class="col-md-3">
-                <img src="assets/img/{{item.imgUrl}}" class="img-fluid rounded-start" alt="">
+                <img src="assets/img/{{item.imageUrl}}" class="img-fluid rounded-start" alt="">
             </div>
             <div class="col-md-9">
                 <div class="card-body">
@@ -59,7 +59,7 @@
     <div class="row rpw-cols-1 row-cols-md-4 g-4 mb-3">
         <div class="col" *ngFor="let item of popularBooks">
             <div class="card h-100">
-                <img src="assets/img/{{item.imgUrl}}" alt="" class="card-img-top img-fluid" style="height: 45vh; ">
+                <img src="assets/img/{{item.imageUrl}}" alt="" class="card-img-top img-fluid" style="height: 45vh; ">
                 <div class="card-body">
                     <h5 class="card-title">
                         {{item.title | titlecase}}

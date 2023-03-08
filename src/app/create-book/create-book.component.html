@@ -1,48 +1,142 @@
-<form>
+<form [formGroup]="bookForm" (ngSubmit)="createBook()">
     <div class="mb-3">
-        <label class="form-label">
+        <label for="title" class="form-label">
             Title
         </label>
-        <input #title type="text" class="form-control">
+        <input type="text" class="form-control" name="title" formControlName="title">
+        <p class="text-danger" *ngIf="bookForm.get('title')?.['invalid'] && bookForm.get('title')?.['touched'] && bookForm.get('title')?.errors?.['required']">
+            Required field.
+        </p>
+        <p class="text-danger" *ngIf="bookForm.get('title')?.['invalid'] && bookForm.get('title')?.['touched'] && bookForm.get('title')?.errors?.['minlength']">
+            Must be more than 4 characters!
+        </p>
     </div>
 
     <div class="mb-3">
-        <label class="form-label">
+        <label for="author" class="form-label">
             Author
         </label>
-        <input #author type="text" class="form-control">
+        <input type="text" class="form-control" name="author" formControlName="author">
+        <p class="text-danger" *ngIf="bookForm.get('author')?.['invalid'] && bookForm.get('author')?.['touched'] && bookForm.get('author')?.errors?.['required']">
+            Required field.
+        </p>
+        <p class="text-danger" *ngIf="bookForm.get('author')?.['invalid'] && bookForm.get('author')?.['touched'] && bookForm.get('author')?.errors?.['minlength']">
+            Must be more than 8 characters!
+        </p>
     </div>
 
     <div class="mb-3">
-        <label class="form-label">
+        <label for="description" class="form-label">
             Description
         </label>
-        <textarea #description class="form-control"> </textarea>
+        <textarea class="form-control" name="description"  formControlName="description">
+        </textarea>
+        <p class="text-danger" *ngIf="bookForm.get('description')?.['invalid'] && bookForm.get('description')?.['touched'] && bookForm.get('description')?.errors?.['required']">
+            Required field.
+        </p>
+        <p class="text-danger" *ngIf="bookForm.get('description')?.['invalid'] && bookForm.get('description')?.['touched'] && bookForm.get('description')?.errors?.['minlength']">
+            Must be more than 20 characters!
+        </p>
     </div>
 
     <div class="mb-3">
-        <label class="form-label">
+        <label for="imageUrl" class="form-label">
             Image Url
         </label>
-        <input #imageUrl type="text" class="form-control">
+        <input type="text" class="form-control" name="imageUrl" formControlName="imageUrl">
+        <p class="text-danger" *ngIf="bookForm.get('imageUrl')?.['invalid'] && bookForm.get('imageUrl')?.['touched'] && bookForm.get('imageUrl')?.errors?.['required']">
+            Required field.
+        </p>
     </div>  
 
     <div class="mb-3">
-        <label class="form-label">
+        <label for="categoryId" class="form-label">
             Category
         </label>
-        <select #categoryid class="form-select" >
+        <select class="form-select" name="categoryId" formControlName="categoryId">
+            <option value="">Seçiniz</option>
             <option *ngFor="let item of categories" [value]="item.id">
                 {{item.cName}}
             </option>
         </select>
+        <p class="text-danger" *ngIf="bookForm.get('categoryId')?.['touched'] && bookForm.get('categoryId')?.['invalid'] && bookForm.get('categoryId')?.errors?.['required']">
+            Required field.
+        </p>
     </div>  
 
     <div class="d-flex justify-content-end">
-        <button class="btn btn-danger" (click)="createBook(title, author, description, imageUrl, categoryid)">
+        <button type="submit" class="btn btn-danger">
+            Create Movie
+        </button>
+    </div>
+</form>
+
+<!-- 
+<form #form="ngForm" (ngSubmit)="createBook()">
+    <div class="mb-3">
+        <label for="title" class="form-label">
+            Title
+        </label>
+        <input required minlength="4" type="text" class="form-control" #title="ngModel" (change)="log(title)" [(ngModel)]="model.title" name="title">
+        <p class="text-danger" *ngIf="title.invalid && title.touched && title.errors?.['required']">
+            Required field.
+        </p>
+        <p class="text-danger" *ngIf="title.invalid && title.touched && title.errors?.['minlength']">
+            Must be more than 4 characters!
+        </p>
+    </div>
+
+    <div class="mb-3">
+        <label for="author" class="form-label">
+            Author
+        </label>
+        <input required #author="ngModel" type="text" class="form-control" [(ngModel)]="model.author" name="author">
+        <p class="text-danger" *ngIf="author.invalid && author.touched && author.errors?.['required']">
+            Required field.
+        </p>
+        
+    </div>
+
+    <div class="mb-3">
+        <label for="description" class="form-label">
+            Description
+        </label>
+        <textarea required #description="ngModel" class="form-control" [(ngModel)]="model.description" name="description"> </textarea>
+        <p class="text-danger" *ngIf="description.invalid && description.touched && description.errors?.['required']">
+            Required field.
+        </p>
+    </div>
+
+    <div class="mb-3">
+        <label for="imageUrl" class="form-label">
+            Image Url
+        </label>
+        <input required #imageUrl="ngModel" type="text" class="form-control" [(ngModel)]="model.imageUrl" name="imageUrl">
+        <p class="text-danger" *ngIf="imageUrl.invalid && imageUrl.touched && imageUrl.errors?.['required']">
+            Required field.
+        </p>
+    </div>  
+
+    <div class="mb-3">
+        <label for="categoryId" class="form-label">
+            Category
+        </label>
+        <select #categoryId="ngModel" [(ngModel)]="model.categoryId" class="form-select" name="categoryId">
+            <option value="">Seçiniz</option>
+            <option *ngFor="let item of categories" [value]="item.id">
+                {{item.cName}}
+            </option>
+        </select>
+         <p class="text-danger" *ngIf="categoryId.pristine && categoryId.touched">
+            Required field.
+        </p>
+    </div>  
+
+    <div class="d-flex justify-content-end">
+        <button [disabled]="form.invalid" type="submit" class="btn btn-danger">
             Create Movie
         </button>
     </div>
 
-</form>
+</form> -->
 
